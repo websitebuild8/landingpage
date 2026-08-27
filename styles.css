@@ -29,11 +29,17 @@
 }
 
 html {
-  scroll-behavior: smooth
+  scroll-behavior: smooth;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip
 }
 
 body {
   margin: 0;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
   background: var(--cream);
   font-family: Faseyha, Arial, sans-serif;
   line-height: 1.8
@@ -42,6 +48,9 @@ body {
 .site-shell {
   background: var(--cream);
   color: var(--ink);
+  width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
   min-height: 100vh;
   transition: background .45s, color .45s
 }
@@ -656,7 +665,22 @@ footer {
   }
 
   .site-header {
-    gap: 12px
+    gap: 12px;
+    padding-inline: 22px
+  }
+
+  .brand {
+    min-width: 0
+  }
+
+  .brand>span:last-child {
+    min-width: 0
+  }
+
+  .brand strong {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
   }
 
   .hero {
@@ -665,11 +689,13 @@ footer {
   }
 
   .channel-grid {
-    grid-template-columns: 1fr
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%
   }
 
   .channel-card {
-    min-height: 390px
+    min-height: 390px;
+    min-width: 0
   }
 
   .intro,
@@ -690,7 +716,8 @@ footer {
   }
 
   .intro p {
-    padding-right: 20px
+    padding-right: 20px;
+    overflow-wrap: anywhere
   }
 
   .skeleton-cards {
@@ -700,11 +727,20 @@ footer {
   .skeleton-cards i:not(:first-child) {
     display: none
   }
+
+  @supports (animation-timeline:view()) {
+    .quote-image,
+    .quote-section blockquote {
+      animation-name: reveal-up;
+      animation-range: entry 6% cover 28%
+    }
+  }
 }
 
 @media(max-width:560px) {
   .site-header {
-    height: 76px
+    height: 76px;
+    padding-inline: 16px
   }
 
   .brand-mark {
@@ -713,17 +749,27 @@ footer {
   }
 
   .brand strong {
-    font-size: 23px
+    font-size: clamp(18px, 5.8vw, 23px)
+  }
+
+  .theme-toggle {
+    flex: 0 0 auto;
+    gap: 0
+  }
+
+  .theme-toggle>span:not(.toggle-track) {
+    display: none
   }
 
   .hero {
-    padding-top: 130px;
+    padding: 120px 20px 64px;
     min-height: 650px;
-    background-position: center
+    background-position: 48% center
   }
 
   .hero h1 {
-    font-size: 58px
+    font-size: clamp(46px, 15vw, 58px);
+    overflow-wrap: anywhere
   }
 
   .hero p {
@@ -732,39 +778,127 @@ footer {
 
   .intro,
   .channels {
-    padding-top: 70px;
-    padding-bottom: 70px
+    padding: 64px 20px
   }
 
   .intro h2,
   .section-heading h2 {
-    font-size: 42px
+    font-size: clamp(36px, 11vw, 42px);
+    overflow-wrap: anywhere
+  }
+
+  .section-heading {
+    margin-bottom: 38px
+  }
+
+  .section-kicker {
+    letter-spacing: 1px
   }
 
   .channel-card {
-    padding: 24px
+    padding: 22px;
+    min-height: 370px;
+    border-radius: 12px
   }
 
   .channel-card h3 {
-    font-size: 43px
+    font-size: clamp(38px, 12vw, 43px)
+  }
+
+  .card-top {
+    gap: 12px
+  }
+
+  .platform-icon {
+    width: 52px;
+    height: 52px;
+    flex: 0 0 52px
+  }
+
+  .status {
+    line-height: 1.5;
+    text-align: center
+  }
+
+  .link-list a {
+    gap: 8px;
+    flex-wrap: wrap;
+    min-height: 54px;
+    overflow-wrap: anywhere
+  }
+
+  .link-list span {
+    max-width: 100%;
+    overflow-wrap: anywhere
+  }
+
+  @media (hover:none) {
+    .channel-card:hover,
+    .primary-button:hover {
+      transform: none
+    }
   }
 
   .quote-section blockquote {
-    padding: 55px 28px
+    padding: 52px 20px
   }
 
   .quote-section blockquote p {
-    font-size: 36px
+    font-size: clamp(32px, 10vw, 36px);
+    overflow-wrap: anywhere
+  }
+
+  .quote-image {
+    min-height: 320px
   }
 
   footer {
     flex-direction: column;
     gap: 30px;
-    text-align: center
+    text-align: center;
+    padding: 44px 20px
   }
 
   .footer-copy {
-    text-align: center
+    text-align: center;
+    max-width: 100%
+  }
+}
+
+@media(max-width:370px) {
+  .brand-mark {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px
+  }
+
+  .brand {
+    gap: 8px
+  }
+
+  .brand strong {
+    font-size: 17px
+  }
+
+  .toggle-track {
+    width: 42px
+  }
+
+  .theme-checkbox:checked~.site-shell .toggle-track i {
+    transform: translateX(17px)
+  }
+
+  .hero {
+    padding-inline: 16px
+  }
+
+  .intro,
+  .channels {
+    padding-inline: 16px
+  }
+
+  .channel-card {
+    padding: 19px
   }
 }
 
