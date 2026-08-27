@@ -1,0 +1,801 @@
+@font-face {
+  font-family: Maumoon;
+  src: url('assets/fonts/Maumoon.otf') format('opentype');
+  font-display: swap
+}
+
+@font-face {
+  font-family: Faseyha;
+  src: url('assets/fonts/Faseyha.ttf') format('truetype');
+  font-display: swap
+}
+
+:root {
+  --ink: #073d35;
+  --deep: #052e29;
+  --green: #0b564b;
+  --mint: #dfece6;
+  --cream: #f7f4eb;
+  --gold: #c89f55;
+  --white: #fff;
+  --line: rgba(7, 61, 53, .14);
+  --muted: #45655f;
+  --section: #e8efe9;
+  --header: rgba(247, 244, 235, .94)
+}
+
+* {
+  box-sizing: border-box
+}
+
+html {
+  scroll-behavior: smooth
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  font-family: Faseyha, Arial, sans-serif;
+  line-height: 1.8
+}
+
+.site-shell {
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  transition: background .45s, color .45s
+}
+
+.theme-checkbox {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none
+}
+
+.theme-checkbox:checked~.site-shell {
+  --ink: #e8f2ed;
+  --deep: #071f1c;
+  --cream: #0b2925;
+  --mint: #183b35;
+  --line: rgba(255, 255, 255, .12);
+  --muted: #a7beb8;
+  --section: #10342f;
+  --header: rgba(8, 35, 31, .94);
+  color-scheme: dark
+}
+
+a {
+  color: inherit;
+  text-decoration: none
+}
+
+.site-header {
+  height: 88px;
+  padding: 0 clamp(24px, 6vw, 92px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--header);
+  backdrop-filter: blur(12px);
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, .2);
+  transition: background .45s, color .45s
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #082e28;
+  overflow: hidden;
+  border: 2px solid rgba(200, 159, 85, .8);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .16)
+}
+
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.08)
+}
+
+.brand strong,
+.brand small {
+  display: block
+}
+
+.brand strong {
+  font: 27px/1.1 Maumoon, Faseyha
+}
+
+.brand small {
+  font-size: 13px;
+  opacity: .72
+}
+
+nav {
+  display: flex;
+  gap: 34px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%)
+}
+
+nav a {
+  font-size: 15px;
+  position: relative;
+  white-space: nowrap
+}
+
+nav a:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -7px;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: .3s
+}
+
+nav a:hover:after,
+nav a:focus-visible:after {
+  width: 100%
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  direction: ltr;
+  user-select: none
+}
+
+.theme-toggle>span:not(.toggle-track) {
+  font: 16px Arial;
+  color: var(--gold)
+}
+
+.toggle-track {
+  width: 46px;
+  height: 25px;
+  padding: 3px;
+  border-radius: 30px;
+  background: rgba(7, 61, 53, .18);
+  box-shadow: inset 0 0 0 1px var(--line);
+  transition: .35s
+}
+
+.toggle-track i {
+  display: block;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: var(--gold);
+  transition: transform .35s
+}
+
+.theme-checkbox:checked~.site-shell .toggle-track {
+  background: #244d46
+}
+
+.theme-checkbox:checked~.site-shell .toggle-track i {
+  transform: translateX(21px)
+}
+
+.hero {
+  min-height: 760px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 150px clamp(24px, 9vw, 140px) 80px;
+  color: white;
+  overflow: hidden;
+  background: url('assets/images/islamic-cover.jpg') center/cover
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(3, 24, 21, .32), rgba(3, 39, 34, .76) 55%, rgba(3, 39, 34, .96)), linear-gradient(0deg, rgba(3, 39, 34, .34), transparent 48%)
+}
+
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: .12;
+  background-image: linear-gradient(30deg, transparent 45%, var(--gold) 46%, var(--gold) 48%, transparent 49%), linear-gradient(-30deg, transparent 45%, var(--gold) 46%, var(--gold) 48%, transparent 49%);
+  background-size: 72px 120px
+}
+
+.hero-content {
+  position: relative;
+  max-width: 650px
+}
+
+.eyebrow,
+.section-kicker {
+  color: var(--gold);
+  font-family: Georgia, serif;
+  font-weight: 700;
+  letter-spacing: 2px
+}
+
+.hero h1 {
+  font: clamp(62px, 8vw, 108px)/1.02 Maumoon, Faseyha;
+  margin: 26px 0 22px;
+  text-shadow: 0 6px 24px rgba(0, 0, 0, .2)
+}
+
+.hero p {
+  font-size: 20px;
+  max-width: 590px;
+  color: rgba(255, 255, 255, .8)
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--gold);
+  color: var(--deep);
+  padding: 13px 24px 10px;
+  border-radius: 4px;
+  margin-top: 22px;
+  font-size: 17px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .18);
+  transition: transform .3s, box-shadow .3s, background .3s
+}
+
+.primary-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, .3);
+  background: #deb86d
+}
+
+.primary-button span {
+  font: 22px Arial
+}
+
+.hero-note {
+  position: absolute;
+  left: clamp(24px, 6vw, 92px);
+  bottom: 40px;
+  writing-mode: vertical-rl;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, .6)
+}
+
+.hero-note span {
+  color: var(--gold)
+}
+
+.intro {
+  padding: 100px clamp(24px, 9vw, 140px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9vw;
+  align-items: center
+}
+
+.intro h2,
+.section-heading h2 {
+  font: clamp(42px, 5vw, 65px)/1.2 Maumoon, Faseyha;
+  margin: 13px 0
+}
+
+.intro p {
+  font-size: 19px;
+  color: var(--muted);
+  border-right: 2px solid var(--gold);
+  padding-right: 32px
+}
+
+.channels {
+  padding: 100px clamp(24px, 6vw, 92px);
+  background: var(--section);
+  transition: background .45s
+}
+
+.section-heading {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 56px
+}
+
+.section-heading p {
+  color: var(--muted)
+}
+
+.channel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  max-width: 1280px;
+  margin: auto
+}
+
+.channel-card {
+  min-height: 430px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(7, 61, 53, .1);
+  transition: transform .35s, box-shadow .35s
+}
+
+.channel-card:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 10% 10%, rgba(255, 255, 255, .16), transparent 36%);
+  pointer-events: none
+}
+
+.channel-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 22px 42px rgba(7, 61, 53, .2)
+}
+
+.telegram {
+  background: #287e9b
+}
+
+.facebook {
+  background: #315b92
+}
+
+.x-card {
+  background: #122521
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+
+.platform-icon {
+  font: bold 33px Arial;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .14)
+}
+
+.status {
+  font-size: 12px;
+  border: 1px solid rgba(255, 255, 255, .28);
+  border-radius: 40px;
+  padding: 3px 12px
+}
+
+.channel-card h3 {
+  font: 48px/1.1 Maumoon, Faseyha;
+  margin: 35px 0 6px
+}
+
+.channel-card p {
+  color: rgba(255, 255, 255, .72);
+  margin: 0
+}
+
+.link-list {
+  border-top: 1px solid rgba(255, 255, 255, .2);
+  margin-top: 30px
+}
+
+.link-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .14);
+  transition: padding .25s, color .25s
+}
+
+.link-list a:hover {
+  padding-right: 8px;
+  color: #ffe1a4
+}
+
+.link-list span {
+  direction: ltr;
+  font: 12px Arial;
+  color: rgba(255, 255, 255, .65)
+}
+
+.quote-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 550px;
+  background: var(--deep);
+  color: white
+}
+
+.quote-image {
+  background: url('https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&w=1200&q=85') center/cover;
+  min-height: 430px;
+  position: relative
+}
+
+.quote-image:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(5, 46, 41, .35))
+}
+
+.quote-section blockquote {
+  margin: 0;
+  padding: 80px clamp(35px, 7vw, 110px);
+  display: flex;
+  justify-content: center;
+  flex-direction: column
+}
+
+.quote-mark {
+  font: 100px/1 Georgia;
+  color: var(--gold);
+  height: 65px
+}
+
+.quote-section blockquote p {
+  font: clamp(35px, 4vw, 55px)/1.45 Maumoon, Faseyha;
+  margin: 20px 0
+}
+
+.quote-section cite {
+  color: var(--gold);
+  font-style: normal
+}
+
+footer {
+  background: #03241f;
+  color: white;
+  padding: 55px clamp(24px, 6vw, 92px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, .1)
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px
+}
+
+.footer-brand h2 {
+  font: 35px/1 Maumoon;
+  margin: 0
+}
+
+.footer-brand p,
+.footer-copy p {
+  margin: 5px 0;
+  color: rgba(255, 255, 255, .65)
+}
+
+.footer-copy {
+  text-align: left
+}
+
+.footer-copy small {
+  color: rgba(255, 255, 255, .45)
+}
+
+/* CSS-only loading skeleton */
+.page-loader {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: #082f2a;
+  display: grid;
+  place-items: center;
+  animation: loader-away .65s ease 1.45s forwards
+}
+
+.loader-shell {
+  width: min(1100px, 88vw)
+}
+
+.skeleton {
+  border-radius: 8px;
+  background: linear-gradient(100deg, rgba(255, 255, 255, .06) 20%, rgba(255, 255, 255, .17) 42%, rgba(255, 255, 255, .06) 64%);
+  background-size: 300% 100%;
+  animation: shimmer 1.15s infinite
+}
+
+.skeleton-logo {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  margin-bottom: 45px
+}
+
+.skeleton-title {
+  width: min(520px, 80%);
+  height: 82px
+}
+
+.skeleton-line {
+  width: min(440px, 74%);
+  height: 16px;
+  margin-top: 18px
+}
+
+.skeleton-line.wide {
+  width: min(590px, 90%);
+  margin-top: 32px
+}
+
+.skeleton-button {
+  width: 150px;
+  height: 48px;
+  margin-top: 34px
+}
+
+.skeleton-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 70px
+}
+
+.skeleton-cards i {
+  display: block;
+  height: 130px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .07)
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -300% 0
+  }
+}
+
+@keyframes loader-away {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none
+  }
+}
+
+/* Progressive CSS scroll reveals */
+@supports (animation-timeline:view()) {
+
+  .intro>*,
+  .section-heading,
+  .channel-card,
+  .quote-image,
+  .quote-section blockquote {
+    animation: reveal-up both linear;
+    animation-timeline: view();
+    animation-range: entry 8% cover 34%
+  }
+
+  .channel-card:nth-child(2) {
+    animation-range: entry 14% cover 38%
+  }
+
+  .channel-card:nth-child(3) {
+    animation-range: entry 20% cover 42%
+  }
+
+  .quote-image {
+    animation-name: reveal-side
+  }
+
+  .quote-section blockquote {
+    animation-name: reveal-side-reverse
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(60px) scale(.98)
+  }
+
+  to {
+    opacity: 1;
+    transform: none
+  }
+}
+
+@keyframes reveal-side {
+  from {
+    opacity: 0;
+    transform: translateX(-70px)
+  }
+
+  to {
+    opacity: 1;
+    transform: none
+  }
+}
+
+@keyframes reveal-side-reverse {
+  from {
+    opacity: 0;
+    transform: translateX(70px)
+  }
+
+  to {
+    opacity: 1;
+    transform: none
+  }
+}
+
+@media(max-width:900px) {
+  nav {
+    display: none
+  }
+
+  .site-header {
+    gap: 12px
+  }
+
+  .hero {
+    min-height: 680px;
+    background-position: 40% center
+  }
+
+  .channel-grid {
+    grid-template-columns: 1fr
+  }
+
+  .channel-card {
+    min-height: 390px
+  }
+
+  .intro,
+  .quote-section {
+    grid-template-columns: 1fr
+  }
+
+  .quote-image {
+    order: 2
+  }
+
+  .hero-note {
+    display: none
+  }
+
+  .intro {
+    gap: 24px
+  }
+
+  .intro p {
+    padding-right: 20px
+  }
+
+  .skeleton-cards {
+    grid-template-columns: 1fr
+  }
+
+  .skeleton-cards i:not(:first-child) {
+    display: none
+  }
+}
+
+@media(max-width:560px) {
+  .site-header {
+    height: 76px
+  }
+
+  .brand-mark {
+    width: 44px;
+    height: 44px
+  }
+
+  .brand strong {
+    font-size: 23px
+  }
+
+  .hero {
+    padding-top: 130px;
+    min-height: 650px;
+    background-position: center
+  }
+
+  .hero h1 {
+    font-size: 58px
+  }
+
+  .hero p {
+    font-size: 17px
+  }
+
+  .intro,
+  .channels {
+    padding-top: 70px;
+    padding-bottom: 70px
+  }
+
+  .intro h2,
+  .section-heading h2 {
+    font-size: 42px
+  }
+
+  .channel-card {
+    padding: 24px
+  }
+
+  .channel-card h3 {
+    font-size: 43px
+  }
+
+  .quote-section blockquote {
+    padding: 55px 28px
+  }
+
+  .quote-section blockquote p {
+    font-size: 36px
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center
+  }
+
+  .footer-copy {
+    text-align: center
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  html {
+    scroll-behavior: auto
+  }
+
+  *,
+  *:before,
+  *:after {
+    transition: none !important
+  }
+
+  .page-loader {
+    animation-duration: .01s;
+    animation-delay: .15s
+  }
+
+  .skeleton {
+    animation: none
+  }
+
+  @supports (animation-timeline:view()) {
+
+    .intro>*,
+    .section-heading,
+    .channel-card,
+    .quote-image,
+    .quote-section blockquote {
+      animation: none
+    }
+  }
+}
