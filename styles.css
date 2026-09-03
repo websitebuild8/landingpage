@@ -376,6 +376,18 @@ nav a:focus-visible:after {
   background: #122521
 }
 
+.instagram {
+  background: linear-gradient(145deg, #7138a5 0%, #c13584 48%, #e6683c 100%)
+}
+
+.hadithmv {
+  background: linear-gradient(145deg, #15634f 0%, #083e35 58%, #062d28 100%)
+}
+
+.viber {
+  background: linear-gradient(145deg, #8b75da 0%, #7360f2 52%, #5542b8 100%)
+}
+
 .card-top {
   display: flex;
   justify-content: space-between;
@@ -383,13 +395,28 @@ nav a:focus-visible:after {
 }
 
 .platform-icon {
-  font: bold 33px Arial;
   display: grid;
   place-items: center;
   width: 58px;
   height: 58px;
   border-radius: 50%;
   background: rgba(255, 255, 255, .14)
+}
+
+.platform-icon img {
+  display: block;
+  width: 30px;
+  height: 30px;
+  object-fit: contain
+}
+
+.hadithmv-icon {
+  background: #fff
+}
+
+.hadithmv-icon img {
+  width: 38px;
+  height: 38px
 }
 
 .status {
